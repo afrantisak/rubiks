@@ -1,0 +1,37 @@
+{"name": "01", "face1": "G0", "face2": "E0", "move": ["F", "R2", "Fi", "R"]}
+{"name": "02", "face1": "G0", "face2": "E1", "move": ["R2", "F", "R", "Fi", "R2"]}
+{"name": "03", "face1": "G0", "face2": "E2", "move": ["R2", "Ui", "R", "U", "Ri"]}
+{"name": "04", "face1": "E1", "face2": "G0", "move": ["R2", "F", "Ri", "Fi", "R2"]}
+{"name": "05", "face1": "E1", "face2": "G1", "move": ["R2", "Ui", "Ri", "U", "Ri"]}
+{"name": "06", "face1": "G1", "face2": "E2", "move": ["Ri", "U", "R2", "U", "R2"]}
+{"name": "07", "face1": "G1", "face2": "E2", "move": ["R", "U2", "R", "U2", "R"]}
+{"name": "08", "face1": "G2", "face2": "E2", "move": ["R", "U", "Ri", "U2", "Ri"]}
+{"name": "09", "face1": "G2", "face2": "E2", "move": ["R2", "Ui", "R2", "Ui", "R"]}
+{"name": "10", "face1": "H1", "face2": "F0", "move": ["R", "Fi", "U2", "F"]}
+{"name": "11", "face1": "E2", "face2": "F1", "move": ["Ri", "U2", "R2", "U", "R2"]}
+{"name": "12", "face1": "G2", "face2": "F1", "move": ["R", "F", "R", "Fi", "R2"]}
+{"name": "13", "face1": "E0", "face2": "H0", "move": ["Ri", "Ui", "R", "Ui", "R2"]}
+{"name": "14", "face1": "G1", "face2": "F1", "move": ["R", "Ui", "R2", "Ui", "R"]}
+{"name": "15", "face1": "G2", "face2": "F2", "move": ["R", "Ui", "R", "U", "Ri"]}
+{"name": "16", "face1": "G0", "face2": "D0", "move": ["F", "R", "Fi", "R2"]}
+{"name": "17", "face1": "G0", "face2": "D2", "move": ["Ri", "U2", "Ri", "Ui", "R2"]}
+{"name": "18", "face1": "D2", "face2": "G1", "move": ["F", "Ri", "Fi", "R2"]}
+{"name": "19", "face1": "G1", "face2": "D1", "move": ["Ri", "U2", "R", "U2", "R"]}
+{"name": "20", "face1": "D0", "face2": "G0", "move": ["Ri", "U", "R2", "U", "R"]}
+{"name": "21", "face1": "H2", "face2": "C0", "move": ["Ri", "Fi", "U2", "F"]}
+{"name": "22", "face1": "C0", "face2": "H2", "move": ["R", "Ui", "R", "U2", "F"]}
+{"name": "23", "face1": "G0", "face2": "C2", "move": ["Ri", "F", "R", "Fi", "R2"]}
+{"name": "24", "face1": "G0", "face2": "C1", "move": ["R2", "U2", "Ri", "Ui", "R2"]}
+{"name": "25", "face1": "G2", "face2": "C1", "move": ["R2", "U", "Ri", "U2", "Ri"]}
+{"name": "26", "face1": "C2", "face2": "G1", "move": ["Ri", "Ui", "Ri", "U", "Ri"]}
+{"name": "27", "face1": "G2", "face2": "C2", "move": ["Ri", "Ui", "R2", "Ui", "R"]}
+{"name": "28", "face1": "D1", "face2": "C0", "move": ["Ri", "Fi", "U", "F"]}
+{"name": "29", "face1": "D2", "face2": "C0", "move": ["F2", "R", "F2", "Ri", "F2"]}
+{"name": "30", "face1": "C0", "face2": "D2", "move": ["R", "U2", "R2", "U", "R2"]}
+{"name": "31", "face1": "D0", "face2": "C0", "move": ["Ri", "U", "R2", "Ui", "R"]}
+{"name": "32", "face1": "C1", "face2": "D2", "move": ["R2", "Ui", "R2", "U2", "Ri"]}
+{"name": "33", "face1": "D2", "face2": "C2", "move": ["Ri", "Ui", "R", "U2", "Ri"]}
+{"name": "34", "face1": "C2", "face2": "D2", "move": ["R", "Ui", "R", "Ui", "R"]}
+{"name": "35", "face1": "C1", "face2": "D0", "move": ["Fi", "U", "F", "R", "U", "Ri"]}
+{"name": "36", "face1": "D2", "face2": "C1", "move": ["Ri", "F", "U2", "R2", "F", "Ri"]}
+{"name": "37", "face1": "D2", "face2": "C0", "move": ["Fi", "U2", "F", "R", "Fi", "R2"]}
