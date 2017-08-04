@@ -1,0 +1,37 @@
+01: G0 E0 - F  R2 Fi R
+02: G0 E1 - R2 F  R  Fi R2
+03: G0 E2 - R2 Ui R  U  Ri
+04: E1 G0 - R2 F  Ri Fi R2
+05: E1 G1 - R2 Ui Ri U  Ri
+06: G1 E2 - Ri U  R2 U  R2
+07: G1 E2 - R  U2 R  U2 R
+08: G2 E2 - R  U  Ri U2 Ri
+09: G2 E2 - R2 Ui R2 Ui R
+10: H1 F0 - R  Fi U2 F
+11: E2 F1 - Ri U2 R2 U  R2
+12: G2 F1 - R  F  R  Fi R2
+13: E0 H0 - Ri Ui R  Ui R2
+14: G1 F1 - R  Ui R2 Ui R
+15: G2 F2 - R  Ui R  U  Ri
+16: G0 D0 - F  R  Fi R2
+17: G0 D2 - Ri U2 Ri Ui R2
+18: D2 G1 - F  Ri Fi R2
+19: G1 D1 - Ri U2 R  U2 R
+20: D0 G0 - Ri U  R2 U  R
+21: H2 C0 - Ri Fi U2 F
+22: C0 H2 - R  Ui R  U2 F
+23: G0 C2 - Ri F  R  Fi R2
+24: G0 C1 - R2 U2 Ri Ui R2
+25: G2 C1 - R2 U  Ri U2 Ri
+26: C2 G1 - Ri Ui Ri U  Ri
+27: G2 C2 - Ri Ui R2 Ui R
+28: D1 C0 - Ri Fi U  F
+29: D2 C0 - F2 R  F2 Ri F2
+30: C0 D2 - R  U2 R2 U  R2
+31: D0 C0 - Ri U  R2 Ui R
+32: C1 D2 - R2 Ui R2 U2 Ri
+33: D2 C2 - Ri Ui R  U2 Ri
+34: C2 D2 - R  Ui R  Ui R
+35: C1 D0 - Fi U  F  R  U  Ri
+36: D2 C1 - Ri F  U2 R2 F  Ri
+37: D2 C0 - Fi U2 F  R  Fi R2
