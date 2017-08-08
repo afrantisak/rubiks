@@ -1,19 +1,120 @@
 #!/usr/bin/env python2
+import sys
 import json
+import html
 import operator
 import collections
 
-moves = []
-for json_str in open('corners.json'):
-    json_obj = json.loads(json_str, object_pairs_hook=collections.OrderedDict)
-    moves.append(json_obj)
 
-for move in sorted(moves, key=lambda move: move['move']):
+def flip_turn(turn):
+    flip = {
+        'F':  'Fi',
+        'Fi': 'F',
+        'R':  'Ri',
+        'Ri': 'R',
+        'L':  'Li',
+        'Li': 'L',
+        'U':  'Ui',
+        'Ui': 'U',
+        'D':  'Di',
+        'Di': 'D',
+        'B':  'Bi',
+        'Bi': 'B',
+    }
+    if turn in flip:
+        return flip[str(turn)]
+    return turn
+
+
+def reverse_move(move):
+    move = reversed(move)
+    move = [flip_turn(turn) for turn in move]
+    return move
+
+
+def move_html(move):
     name = move['name']
-    move_str = ' '.join(move['move'])
-    img = '<img src="file:///home/franta/dev/rubiks/{name}.png"/>'.format(**locals())
-    print '<html>'
-    print '<body>'
-    print img, json.dumps(move_str), '<BR>'
-    print '</body>'
-    print '</html>'
+    html = ''
+    move_str = turn_table(move['move'])
+    back_str = turn_table(reverse_move(move['move']))
+    img = '<img src="http://127.0.0.1:8000/{name}.png"/>'.format(**locals())
+    html += '<table><tr>'
+    html += '<td>' + name + '</td>'
+    html += '<td align="right" style=\'width: 300px; \'>' + back_str + '</td>'
+    html += '<td>' + img + '</td>'
+    html += '<td style=\'width: 300px\'>' + move_str + '</td>'
+    html += '</tr>'
+    html += '</table>'
+    return html
+
+
+def turn_html_text(turn):
+    if len(turn) > 1:
+        if turn[1] == '2':
+            turn = turn[0] + '<sup>' + turn[1] + '</sup>'
+        if turn[1] == 'i':
+            turn = turn[0] + '<sub>' + turn[1] + '</sub>'
+    return turn
+
+
+def turn_table(move):
+    move_cell_props = {
+        'align': 'center',
+        'valign': 'baseline',
+        'style': {
+            'width': '18px',
+            'border': '1px solid black',
+            'border-spacing': '-5px',
+            'padding': '5px',
+            'border-collapse': 'collapse'
+        }
+    }
+    move_row_props = {
+        'style': {
+            'border-spacing': '0px',
+            'border-collapse': 'collapse',
+        }
+    }
+    move_cell_attributes = html.attributes_text(move_cell_props)
+    move_row_attributes = html.attributes_text(move_row_props)
+    html_text = '<table>'.format(**locals())
+    html_text += '<tr {move_row_attributes}>'.format(**locals())
+    for turn in move:
+        html_text += '<td {move_cell_attributes}>'.format(**locals())
+        html_text += turn_html_text(turn)
+        html_text += '</td>'
+    html_text += '</tr>'
+    html_text += '</table>'
+    return html_text
+
+
+def load_moves(filename):
+    moves = []
+    for json_str in open(filename):
+        json_obj = json.loads(json_str, object_pairs_hook=collections.OrderedDict)
+        moves.append(json_obj)
+    return moves
+
+
+def moves_html(moves):
+    html = ''
+    html += '<html>'
+    html += '<body>'
+    for index, move in enumerate(sorted(moves, key=lambda move: move['move'])):
+        name = move['name']
+        html += move_html(move)
+        if index % 10 == 9:
+            html += '<BR>'* 2
+    html += '</body>'
+    html += '</html>'
+    return html
+
+
+def main():
+    moves = load_moves('corners.json')
+    html = moves_html(moves)
+    print html
+
+
+if __name__ == '__main__':
+    sys.exit(main())
