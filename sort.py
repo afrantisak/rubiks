@@ -63,8 +63,7 @@ def turn_table(move):
         'valign': 'baseline',
         'style': {
             'width': '18px',
-            'border': '1px solid black',
-            'border-spacing': '-5px',
+            'border': '1px solid gray',
             'padding': '5px',
             'border-collapse': 'collapse'
         }
@@ -75,9 +74,16 @@ def turn_table(move):
             'border-collapse': 'collapse',
         }
     }
+    table_props = {
+        'style': {
+            'border-spacing': '0px',
+            'border-collapse': 'collapse',
+        }
+    }
     move_cell_attributes = html.attributes_text(move_cell_props)
     move_row_attributes = html.attributes_text(move_row_props)
-    html_text = '<table>'.format(**locals())
+    table_attributes = html.attributes_text(table_props)
+    html_text = '<table {table_attributes}>'.format(**locals())
     html_text += '<tr {move_row_attributes}>'.format(**locals())
     for turn in move:
         html_text += '<td {move_cell_attributes}>'.format(**locals())
@@ -100,11 +106,21 @@ def moves_html(moves):
     html = ''
     html += '<html>'
     html += '<body>'
+    html += '<font face="Courier New" size="3">'
+    html += '<center>'
+    html += '<BR>'
+    html += '<table style="border: 1px solid black; padding=0px; border-collapse: collapse">'
     for index, move in enumerate(sorted(moves, key=lambda move: move['move'])):
-        name = move['name']
+        html += '<tr><td>'
         html += move_html(move)
+        html += '</td></tr>'
+        html += '</table>'
         if index % 10 == 9:
-            html += '<BR>'* 2
+            html += '<BR>'* 3
+        html += '<table style="border: 1px solid black">'
+    html += '</table>'
+    html += '</center>'
+    html += '</font>'
     html += '</body>'
     html += '</html>'
     return html
