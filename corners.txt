@@ -34,4 +34,4 @@
 34: C2 D2 - R  Ui R  Ui R
 35: C1 D0 - Fi U  F  R  U  Ri
 36: D2 C1 - Ri F  U2 R2 F  Ri
-37: D2 C0 - Fi U2 F  R  Fi R2
+37: D2 C0 - R  U2 F  R  Fi R2

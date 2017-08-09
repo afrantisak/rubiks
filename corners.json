@@ -34,4 +34,4 @@
 {"name": "34", "face1": "C2", "face2": "D2", "move": ["R", "Ui", "R", "Ui", "R"]}
 {"name": "35", "face1": "C1", "face2": "D0", "move": ["Fi", "U", "F", "R", "U", "Ri"]}
 {"name": "36", "face1": "D2", "face2": "C1", "move": ["Ri", "F", "U2", "R2", "F", "Ri"]}
-{"name": "37", "face1": "D2", "face2": "C0", "move": ["Fi", "U2", "F", "R", "Fi", "R2"]}
+{"name": "37", "face1": "D2", "face2": "C0", "move": ["R", "U2", "F", "R", "Fi", "R2"]}

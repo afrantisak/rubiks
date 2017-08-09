@@ -106,7 +106,7 @@ def moves_html(moves):
     html = ''
     html += '<html>'
     html += '<body>'
-    html += '<font face="Courier New" size="3">'
+    html += '<font face="Mono" size="3">'
     html += '<center>'
     html += '<BR>'
     html += '<table style="border: 1px solid black; padding=0px; border-collapse: collapse">'
