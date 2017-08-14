@@ -19,7 +19,7 @@
 19: G1 D1 - Ri U2 R  U2 R
 20: D0 G0 - Ri U  R2 U  R
 21: H2 C0 - Ri Fi U2 F
-22: C0 H2 - R  Ui R  U2 F
+22: C0 H2 - R  Ui R  U2 R
 23: G0 C2 - Ri F  R  Fi R2
 24: G0 C1 - R2 U2 Ri Ui R2
 25: G2 C1 - R2 U  Ri U2 Ri
@@ -34,4 +34,4 @@
 34: C2 D2 - R  Ui R  Ui R
 35: C1 D0 - Fi U  F  R  U  Ri
 36: D2 C1 - Ri F  U2 R2 F  Ri
-37: D2 C0 - R  U2 F  R  Fi R2
+37: D2 C0 - Ri U2 F  R  Fi R2
