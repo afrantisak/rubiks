@@ -11,40 +11,31 @@ def turn_html(turn):
 
 
 def turns_html(move):
-    move_cell_props = {
-        'align': 'center',
-        'valign': 'baseline',
-        'style': {
-            'width': '18px',
-            'border': '1px solid gray',
-            'padding': '5px',
-            'border-collapse': 'collapse'
-        }
+    props = {
+        'cell': {
+            'align': 'center',
+            'valign': 'baseline',
+            'style': {
+                'width': '18px',
+                'border': '1px solid gray',
+                'padding': '5px',
+                'border-collapse': 'collapse'
+            }
+        },
+        'row': {
+            'style': {
+                'border-spacing': '0px',
+                'border-collapse': 'collapse',
+            }
+        },
+        'table': {
+            'style': {
+                'border-spacing': '0px',
+                'border-collapse': 'collapse',
+            }
+        },
     }
-    move_row_props = {
-        'style': {
-            'border-spacing': '0px',
-            'border-collapse': 'collapse',
-        }
-    }
-    table_props = {
-        'style': {
-            'border-spacing': '0px',
-            'border-collapse': 'collapse',
-        }
-    }
-    move_cell_attributes = html.attributes_text(move_cell_props)
-    move_row_attributes = html.attributes_text(move_row_props)
-    table_attributes = html.attributes_text(table_props)
-    html_text = '<table {table_attributes}>'.format(**locals())
-    html_text += '<tr {move_row_attributes}>'.format(**locals())
-    for turn in move:
-        html_text += '<td {move_cell_attributes}>'.format(**locals())
-        html_text += turn_html(turn)
-        html_text += '</td>'
-    html_text += '</tr>'
-    html_text += '</table>'
-    return html_text
+    return html.table_single_row(move, turn_html, props)
 
 
 def algorithm_html(move):
