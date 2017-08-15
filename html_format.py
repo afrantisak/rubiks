@@ -1,23 +1,7 @@
 import html
 import util
 
-def move_2_html(move):
-    name = move['name']
-    html = ''
-    move_str = turns_2_table(move['move'])
-    back_str = turns_2_table(util.reverse_move(move['move']))
-    img = '<img src="http://127.0.0.1:8000/{name}.png"/>'.format(**locals())
-    html += '<table><tr>'
-    html += '<td>' + name + '</td>'
-    html += '<td align="right" style=\'width: 300px; \'>' + back_str + '</td>'
-    html += '<td>' + img + '</td>'
-    html += '<td style=\'width: 300px\'>' + move_str + '</td>'
-    html += '</tr>'
-    html += '</table>'
-    return html
-
-
-def turn_2_html(turn):
+def turn_html(turn):
     if len(turn) > 1:
         if turn[1] == '2':
             turn = turn[0] + '<sup>' + turn[1] + '</sup>'
@@ -26,7 +10,7 @@ def turn_2_html(turn):
     return turn
 
 
-def turns_2_table(move):
+def turns_html(move):
     move_cell_props = {
         'align': 'center',
         'valign': 'baseline',
@@ -56,14 +40,30 @@ def turns_2_table(move):
     html_text += '<tr {move_row_attributes}>'.format(**locals())
     for turn in move:
         html_text += '<td {move_cell_attributes}>'.format(**locals())
-        html_text += turn_2_html(turn)
+        html_text += turn_html(turn)
         html_text += '</td>'
     html_text += '</tr>'
     html_text += '</table>'
     return html_text
 
 
-def moves_2_html(moves):
+def algorithm_html(move):
+    name = move['name']
+    html = ''
+    move_str = turns_html(move['move'])
+    back_str = turns_html(util.reverse_move(move['move']))
+    img = '<img src="http://127.0.0.1:8000/{name}.png"/>'.format(**locals())
+    html += '<table><tr>'
+    # html += '<td>' + name + '</td>'
+    # html += '<td align="right" style=\'width: 170px; \'>' + back_str + '</td>'
+    html += '<td>' + img + '</td>'
+    html += '<td style=\'width: 170px\'>' + move_str + '</td>'
+    html += '</tr>'
+    html += '</table>'
+    return html
+
+
+def page_html(moves):
     html = ''
     html += '<html>'
     html += '<body>'
@@ -73,7 +73,7 @@ def moves_2_html(moves):
     html += '<table style="border: 1px solid black; padding=0px; border-collapse: collapse">'
     for index, move in enumerate(sorted(moves, key=lambda move: move['move'])):
         html += '<tr><td>'
-        html += move_2_html(move)
+        html += algorithm_html(move)
         html += '</td></tr>'
         html += '</table>'
         if index % 10 == 9:

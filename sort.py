@@ -1,10 +1,7 @@
 #!/usr/bin/env python2
 import sys
 import json
-import util
-import html
 import html_format
-import operator
 import collections
 
 
@@ -18,7 +15,7 @@ def load_moves(filename):
 
 def main():
     moves = load_moves('corners.json')
-    html = html_format.moves_2_html(moves)
+    html = html_format.page_html(moves)
     print html
 
 
