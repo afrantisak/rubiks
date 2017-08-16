@@ -35,7 +35,8 @@ def turns_html(move):
             }
         },
     }
-    return html.table_single_row(move, turn_html, props)
+    move = [move]
+    return html.table(move, turn_html, props)
 
 
 def algorithm_html(move):
@@ -43,7 +44,10 @@ def algorithm_html(move):
     html = ''
     move_str = turns_html(move['move'])
     back_str = turns_html(util.reverse_move(move['move']))
-    img = '<img src="http://127.0.0.1:8000/{name}.png"/>'.format(**locals())
+    img = '<div style="width: 63px; height: 68px; margin-left: -6px; margin-top: -9px; overflow: hidden">'
+    img += '<img src="http://127.0.0.1:8000/{name}.png" width="70px"/>'
+    img += '</div>'
+    img = img.format(**locals())
     html += '<table><tr>'
     # html += '<td>' + name + '</td>'
     # html += '<td align="right" style=\'width: 170px; \'>' + back_str + '</td>'
@@ -55,24 +59,40 @@ def algorithm_html(move):
 
 
 def page_html(moves):
-    html = ''
-    html += '<html>'
-    html += '<body>'
-    html += '<font face="Mono" size="3">'
-    html += '<center>'
-    html += '<BR>'
-    html += '<table style="border: 1px solid black; padding=0px; border-collapse: collapse">'
-    for index, move in enumerate(sorted(moves, key=lambda move: move['move'])):
-        html += '<tr><td>'
-        html += algorithm_html(move)
-        html += '</td></tr>'
-        html += '</table>'
-        if index % 10 == 9:
-            html += '<BR>'* 3
-        html += '<table style="border: 1px solid black">'
-    html += '</table>'
-    html += '</center>'
-    html += '</font>'
-    html += '</body>'
-    html += '</html>'
-    return html
+    html_text = ''
+    html_text += '<html>'
+    html_text += '<body>'
+    html_text += '<font face="Mono" size="3">'
+    html_text += '<center>'
+    html_text += '<BR>'
+    props = {
+        'cell': {
+            'align': 'center',
+            'valign': 'baseline',
+            'style': {
+                'border': '1px solid black',
+                'padding': '1px',
+                'border-collapse': 'collapse'
+            }
+        },
+        'row': {
+            'style': {
+                'border-spacing': '0px',
+                'border-collapse': 'collapse',
+            }
+        },
+        'table': {
+            'style': {
+                'border-spacing': '0px',
+                'border-collapse': 'collapse',
+            }
+        },
+    }
+    moves_data = sorted(moves, key=lambda move: move['move'])
+    moves_data = [[move] for move in moves_data]
+    html_text += html.table(moves_data, algorithm_html, props)
+    html_text += '</center>'
+    html_text += '</font>'
+    html_text += '</body>'
+    html_text += '</html>'
+    return html_text

@@ -17,6 +17,7 @@ def main():
     moves = load_moves('corners.json')
     html = html_format.page_html(moves)
     print html
+    return True
 
 
 if __name__ == '__main__':
