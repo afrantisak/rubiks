@@ -41,21 +41,18 @@ def turns_html(move):
 
 def algorithm_html(move):
     name = move['name']
-    html = ''
+    html_text = ''
     move_str = turns_html(move['move'])
     back_str = turns_html(util.reverse_move(move['move']))
-    img = '<div style="width: 63px; height: 68px; margin-left: -6px; margin-top: -9px; overflow: hidden">'
-    img += '<img src="http://127.0.0.1:8000/{name}.png" width="70px"/>'
-    img += '</div>'
-    img = img.format(**locals())
-    html += '<table><tr>'
-    # html += '<td>' + name + '</td>'
-    # html += '<td align="right" style=\'width: 170px; \'>' + back_str + '</td>'
-    html += '<td>' + img + '</td>'
-    html += '<td style=\'width: 170px\'>' + move_str + '</td>'
-    html += '</tr>'
-    html += '</table>'
-    return html
+    img = html.img_cropped('http://127.0.0.1:8000/{name}.png'.format(**locals()), '70px', '63px', '68px', '-6px', '-9px')
+    html_text += '<table><tr>'
+    html_text += '<td>' + name + '</td>'
+    html_text += '<td align="right" style=\'width: 170px; \'>' + back_str + '</td>'
+    html_text += '<td>' + img + '</td>'
+    html_text += '<td style=\'width: 170px\'>' + move_str + '</td>'
+    html_text += '</tr>'
+    html_text += '</table>'
+    return html_text
 
 
 def page_html(moves):
