@@ -1,5 +1,7 @@
 import html
 import util
+import collections
+
 
 def turn_html(turn):
     sup_attributes = html.attributes_text({
@@ -96,8 +98,13 @@ def page_html(moves):
         },
     }
     moves_data = sorted(moves, key=lambda move: move['move'])
-    moves_data = [[move] for move in moves_data]
-    html_text += html.table(moves_data, algorithm_html, props)
+    moves_by_first = collections.defaultdict(list)
+    for move in moves_data:
+        moves_by_first[move['move'][0]] += [move]
+    for first, move_data in moves_by_first.iteritems():
+        moves_data = [[move] for move in move_data]
+        html_text += html.table(moves_data, algorithm_html, props)
+        html_text += '<BR>' * 3
     html_text += '</center>'
     html_text += '</font>'
     html_text += '</body>'
