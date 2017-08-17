@@ -3,6 +3,58 @@ import util
 import collections
 
 
+MOVE_TABLE_ATTRIBUTES = {
+    'cell': {
+        'align': 'center',
+        'valign': 'baseline',
+        'style': {
+            'border': '1px solid gray',
+            'padding': '2px',
+            'border-collapse': 'collapse'
+        }
+    },
+    'row': {
+        'style': {
+            'border-spacing': '0px',
+            'border-collapse': 'collapse',
+        }
+    },
+    'table': {
+        'style': {
+            'border-spacing': '0px',
+            'border-collapse': 'collapse',
+        }
+    },
+}
+
+
+TURN_TABLE_ATTRIBUTES = {
+    'cell': {
+        'align': 'left',
+        'valign': 'baseline',
+        'style': {
+            'width': '18px',
+            'height': '20px',
+            'border': '0px dotted gray',
+            'padding': '3px',
+            'border-collapse': 'collapse'
+        }
+    },
+    'row': {
+        'style': {
+            'border-spacing': '0px',
+            'border-collapse': 'collapse',
+        }
+    },
+    'table': {
+        'style': {
+            'border-spacing': '0px',
+            'border-collapse': 'collapse',
+        }
+    },
+}
+
+
 def turn_html(turn):
     sup_attributes = html.attributes_text({
         'vertical-align': 'baseline',
@@ -23,32 +75,7 @@ def turn_html(turn):
 
 
 def turns_html(move):
-    props = {
-        'cell': {
-            'align': 'left',
-            'valign': 'baseline',
-            'style': {
-                'width': '18px',
-                'height': '20px',
-                'border': '1px dotted gray',
-                'padding': '3px',
-                'border-collapse': 'collapse'
-            }
-        },
-        'row': {
-            'style': {
-                'border-spacing': '0px',
-                'border-collapse': 'collapse',
-            }
-        },
-        'table': {
-            'style': {
-                'border-spacing': '0px',
-                'border-collapse': 'collapse',
-            }
-        },
-    }
-    return html.table([move], turn_html, props)
+    return html.table([move], turn_html, TURN_TABLE_ATTRIBUTES)
 
 
 def algorithm_html(move):
@@ -67,6 +94,12 @@ def algorithm_html(move):
     return html_text
 
 
+def move_table(moves):
+    moves_data = [[move] for move in moves]
+    html_text = html.table(moves_data, algorithm_html, MOVE_TABLE_ATTRIBUTES)
+    return html_text
+
+
 def page_html(moves):
     html_text = ''
     html_text += '<html>'
@@ -74,37 +107,16 @@ def page_html(moves):
     html_text += '<font face="Mono" size="3">'
     html_text += '<center>'
     html_text += '<BR>'
-    props = {
-        'cell': {
-            'align': 'center',
-            'valign': 'baseline',
-            'style': {
-                'border': '1px solid gray',
-                'padding': '2px',
-                'border-collapse': 'collapse'
-            }
-        },
-        'row': {
-            'style': {
-                'border-spacing': '0px',
-                'border-collapse': 'collapse',
-            }
-        },
-        'table': {
-            'style': {
-                'border-spacing': '0px',
-                'border-collapse': 'collapse',
-            }
-        },
-    }
     moves_data = sorted(moves, key=lambda move: move['move'])
-    moves_by_first = collections.defaultdict(list)
+    moves_by_first = collections.OrderedDict()
     for move in moves_data:
-        moves_by_first[move['move'][0]] += [move]
-    for first, move_data in moves_by_first.iteritems():
-        moves_data = [[move] for move in move_data]
-        html_text += html.table(moves_data, algorithm_html, props)
-        html_text += '<BR>' * 3
+        key = move['move'][0]
+        if key not in moves_by_first:
+            moves_by_first[key] = []
+        moves_by_first[key] += [move]
+    for first, move_group in moves_by_first.iteritems():
+        html_text += move_table(move_group)
+        html_text += '<BR>'
     html_text += '</center>'
     html_text += '</font>'
     html_text += '</body>'
