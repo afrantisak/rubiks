@@ -28,6 +28,31 @@ MOVE_TABLE_ATTRIBUTES = {
 }
 
 
+BORDERLESS_TABLE_ATTRIBUTES = {
+    'cell': {
+        'align': 'center',
+        'valign': 'baseline',
+        'style': {
+            'border': '0px',
+            'padding': '5px',
+            'border-collapse': 'collapse'
+        }
+    },
+    'row': {
+        'style': {
+            'border-spacing': '0px',
+            'border-collapse': 'collapse',
+        }
+    },
+    'table': {
+        'style': {
+            'border-spacing': '0px',
+            'border-collapse': 'collapse',
+        }
+    },
+}
+
+
 TURN_TABLE_ATTRIBUTES = {
     'cell': {
         'align': 'left',
@@ -94,9 +119,36 @@ def algorithm_html(move):
     return html_text
 
 
-def move_table(moves):
-    moves_data = [[move] for move in moves]
-    html_text = html.table(moves_data, algorithm_html, MOVE_TABLE_ATTRIBUTES)
+def sort_moves(moves):
+    return sorted(moves, key=lambda move: move['move'])
+
+
+def partition_moves_by_first_turn(moves):
+    partitioned = collections.OrderedDict()
+    for move in moves:
+        key = move['move'][0]
+        if key not in partitioned:
+            partitioned[key] = []
+        partitioned[key] += [move]
+    return partitioned
+
+
+def vert_arrangement(moves):
+    html_text = ''
+    for first, moves_group in moves.iteritems():
+        moves_data = [[move] for move in moves_group]
+        html_text += html.table(moves_data, algorithm_html, MOVE_TABLE_ATTRIBUTES)
+        html_text += '<BR>'
+    return html_text
+
+
+def grid_arrangement(moves):
+    html_text = ''
+    moves_groups = [moves.values()]
+    def vert(moves_group):
+        moves_data = [[move] for move in moves_group]
+        return html.table(moves_data, algorithm_html, MOVE_TABLE_ATTRIBUTES)
+    html_text += html.table(moves_groups, vert, BORDERLESS_TABLE_ATTRIBUTES)
     return html_text
 
 
@@ -107,16 +159,9 @@ def page_html(moves):
     html_text += '<font face="Mono" size="3">'
     html_text += '<center>'
     html_text += '<BR>'
-    moves_data = sorted(moves, key=lambda move: move['move'])
-    moves_by_first = collections.OrderedDict()
-    for move in moves_data:
-        key = move['move'][0]
-        if key not in moves_by_first:
-            moves_by_first[key] = []
-        moves_by_first[key] += [move]
-    for first, move_group in moves_by_first.iteritems():
-        html_text += move_table(move_group)
-        html_text += '<BR>'
+    moves = sort_moves(moves)
+    moves = partition_moves_by_first_turn(moves)
+    html_text += grid_arrangement(moves)
     html_text += '</center>'
     html_text += '</font>'
     html_text += '</body>'
