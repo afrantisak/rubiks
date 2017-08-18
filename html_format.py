@@ -161,6 +161,10 @@ def page_html(moves):
     html_text += '<BR>'
     moves = sort_moves(moves)
     moves = partition_moves_by_first_turn(moves)
+    moves['F2'] += moves.pop('Fi')
+    moves_ri = moves.pop('Ri')
+    moves['Ri1'] = moves_ri[:7]
+    moves['Ri2'] = moves_ri[7:]
     html_text += grid_arrangement(moves)
     html_text += '</center>'
     html_text += '</font>'
